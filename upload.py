@@ -16,13 +16,17 @@ Files = repo.get_contents("Data")
 
 def Fload():
     # Updating file in server
-    for index in range(len(Files_List)):
-        repo.update_file(
-            Files[index].path,
-            "Dustbin Data Update",
-            Files_List[index],
-            Files[index].sha,
-            branch="main",
-        )
+    try:
+        for index in range(len(Files_List)):
+            repo.update_file(
+                Files[index].path,
+                "Dustbin Data Update",
+                Files_List[index],
+                Files[index].sha,
+                branch="main",
+            )
 
-    print("File Complete")
+        return "File Complete"
+
+    except:
+        return "Network connection Lost"
